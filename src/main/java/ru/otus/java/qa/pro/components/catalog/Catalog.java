@@ -21,7 +21,6 @@ public class Catalog extends HtmlElement {
 
     @FindBy(xpath = "descendant::a")
     private List<CourseBlock> allCourseBlock;
-
     @FindBy(xpath = "descendant::button[contains(text(), 'Показать')]")
     private Button showMoreButton;
 

@@ -13,7 +13,6 @@ public class MainPageTest {
 
     @Inject
     private MainPage mainPage;
-
     @Inject
     private CourseCatalogPage coursesPage;
 

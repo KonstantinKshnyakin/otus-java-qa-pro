@@ -30,7 +30,6 @@ public class CourseCatalogPageTest {
                             .assertUrl()
                             .assertTitle("Kotlin QA Engineer");
                 });
-        System.out.println("+++++++++++++++++++++++");
     }
 
     @Test

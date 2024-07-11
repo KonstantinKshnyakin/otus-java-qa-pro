@@ -19,10 +19,8 @@ public class DirectionLeftBar extends BaseComponent<DirectionLeftBar> {
 
     @FindBy(xpath = "//span[text()='Свернуть']")
     private Button collapse;
-
     @FindBy(xpath = "//span[text()='Показать все']")
     private Button showAll;
-
     @FindBy(xpath = "//div[.//p[text()='Направление'] and ./div[@class='ReactCollapse--collapse']]/descendant::div[./label[text()]]")
     private List<CheckBox> allCheckBoxes;
 
