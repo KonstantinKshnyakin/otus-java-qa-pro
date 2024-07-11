@@ -19,6 +19,9 @@
         <junit.version>5.10.2</junit.version>
         <selenium.version>4.22.0</selenium.version>
         <webdrivermanager.version>5.9.1</webdrivermanager.version>
+        <assertj-core.version>3.26.0</assertj-core.version>
+        <htmlelements.version>1.20.0</htmlelements.version>
+        <jsoup.version>1.17.2</jsoup.version>
 
         <!--        plugins-->
         <surefire.version>3.3.0</surefire.version>
@@ -28,6 +31,11 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>${jsoup.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
@@ -47,6 +55,16 @@
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
             <version>${webdrivermanager.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj-core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ru.yandex.qatools.htmlelements</groupId>
+            <artifactId>htmlelements-java</artifactId>
+            <version>${htmlelements.version}</version>
         </dependency>
     </dependencies>
 
@@ -87,7 +105,7 @@
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <version>${checkstyle.version}</version>
                 <configuration>
-                    <configLocation>checkstyle.xml</configLocation>
+                    <configLocation>${project.build.sourceDirectory}/../resources/checkstyle.xml</configLocation>
                 </configuration>
                 <goals>
                     <goal>compile</goal>
