@@ -4,28 +4,54 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import ru.otus.java.qa.pro.Waiter;
+import ru.otus.java.qa.pro.settings.TestContext;
+import ru.otus.java.qa.pro.util.Waiter;
 import ru.otus.java.qa.pro.util.WebDriverManager;
 import ru.yandex.qatools.htmlelements.element.HtmlElement;
+
+import java.sql.DriverManager;
 
 public abstract class BaseElement extends HtmlElement {
 
     protected final Waiter waiter;
     protected final Actions actions;
     protected final WebDriver webDriver;
+    private TestContext testContext;
 
     public BaseElement() {
+        System.out.println("BaseElement thread1234: " + Thread.currentThread());
         this.webDriver = WebDriverManager.getWebDriver();
         this.waiter = new Waiter(webDriver);
         this.actions = new Actions(webDriver);
     }
 
-    public WebDriver getDriver() {
+    protected WebDriver getDriver() {
         return webDriver;
     }
 
+    protected JavascriptExecutor getJavascriptExecutor() {
+        return (JavascriptExecutor) getDriver();
+    }
+
+    protected void executeJSScript(String script) {
+        getJavascriptExecutor().executeScript(script, element());
+    }
+
+    protected WebElement element() {
+        return getWrappedElement();
+    }
+
     public void scrollIntoView() {
-        ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", element());
+        executeJSScript("arguments[0].scrollIntoView(true);");
+    }
+
+    public void clickJS() {
+        executeJSScript("arguments[0].click();");
+    }
+
+    public void moveToElementAndJSClick() {
+        moveToElement();
+        clickJS();
     }
 
     public void moveToElementAndClick() {
@@ -47,10 +73,6 @@ public abstract class BaseElement extends HtmlElement {
         WebElement element = element();
         waiter.elementToBeClickable(element);
         element.click();
-    }
-
-    private WebElement element() {
-        return getWrappedElement();
     }
 
 }

@@ -5,12 +5,13 @@ import static ru.otus.java.qa.pro.elements.ElementInit.checkBoxByXPath;
 import static ru.otus.java.qa.pro.util.cashe.CacheId.SELECT_DIRECTION;
 
 import com.google.inject.Inject;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import ru.otus.java.qa.pro.components.BaseComponent;
 import ru.otus.java.qa.pro.data.CoursesDirection;
 import ru.otus.java.qa.pro.elements.Button;
 import ru.otus.java.qa.pro.elements.CheckBox;
+import ru.otus.java.qa.pro.settings.TestContext;
+
 import java.util.List;
 
 public class DirectionLeftBar extends BaseComponent<DirectionLeftBar> {
@@ -25,8 +26,8 @@ public class DirectionLeftBar extends BaseComponent<DirectionLeftBar> {
     private List<CheckBox> allCheckBoxes;
 
     @Inject
-    public DirectionLeftBar(WebDriver driver) {
-        super(driver);
+    public DirectionLeftBar(TestContext testContext) {
+        super(testContext);
     }
 
     public DirectionLeftBar clickCollapseButton() {

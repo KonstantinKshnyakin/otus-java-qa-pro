@@ -1,21 +1,20 @@
 package ru.otus.java.qa.pro.util;
 
 import org.openqa.selenium.WebDriver;
-import ru.otus.java.qa.pro.driver.impl.DriverFactory;
 
 public final class WebDriverManager {
 
-    private static final ThreadLocal<WebDriver> WEB_DRIVER = new ThreadLocal<>();
+    private static final ThreadLocal<WebDriver> WEB_DRIVERS = new ThreadLocal<>();
 
     private WebDriverManager() {
     }
 
     public static WebDriver getWebDriver() {
-        return WEB_DRIVER.get();
+        return WEB_DRIVERS.get();
     }
 
-    public static void createWebDriver() {
-        WEB_DRIVER.set(new DriverFactory().getDriver());
+    public static void setWebDriver(WebDriver webDriver) {
+        WEB_DRIVERS.set(webDriver);
     }
 
 }

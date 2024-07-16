@@ -1,13 +1,13 @@
-package ru.otus.java.qa.pro.pages.impl;
+package ru.otus.java.qa.pro.pages;
 
 import static ru.otus.java.qa.pro.util.cashe.CacheId.SELECT_DIRECTION;
 
 import com.google.inject.Inject;
-import org.openqa.selenium.WebDriver;
 import ru.otus.java.qa.pro.annotations.Path;
 import ru.otus.java.qa.pro.components.NavBar;
 import ru.otus.java.qa.pro.components.catalog.Catalog;
 import ru.otus.java.qa.pro.components.catalog.DirectionLeftBar;
+import ru.otus.java.qa.pro.settings.TestContext;
 
 @Path("/catalog/courses")
 public class CourseCatalogPage extends BasePage<CourseCatalogPage> {
@@ -17,10 +17,10 @@ public class CourseCatalogPage extends BasePage<CourseCatalogPage> {
     private Catalog catalog;
 
     @Inject
-    public CourseCatalogPage(WebDriver driver,
+    public CourseCatalogPage(TestContext testContext,
                              NavBar navBar,
                              DirectionLeftBar directionLeftBar) {
-        super(driver);
+        super(testContext);
         this.navBar = navBar;
         this.directionLeftBar = directionLeftBar;
     }

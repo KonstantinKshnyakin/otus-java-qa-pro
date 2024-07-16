@@ -1,12 +1,13 @@
-package ru.otus.java.qa.pro.pages.impl;
+package ru.otus.java.qa.pro.pages;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.openqa.selenium.WebDriver;
 import ru.otus.java.qa.pro.annotations.Path;
 import ru.otus.java.qa.pro.annotations.PathTemplate;
 import ru.otus.java.qa.pro.commons.CommonObject;
 import ru.otus.java.qa.pro.exceptions.UITestException;
+import ru.otus.java.qa.pro.settings.TestContext;
+
 import java.util.Arrays;
 import java.util.function.Consumer;
 
@@ -15,8 +16,8 @@ public abstract class BasePage<T extends BasePage<T>> extends CommonObject<T> {
     protected final String baseUrl = System.getProperty("base.url");
     protected String url;
 
-    public BasePage(WebDriver driver) {
-        super(driver);
+    public BasePage(TestContext testContext) {
+        super(testContext);
     }
 
     public T doThis(Consumer<T> consumer) {
@@ -29,16 +30,16 @@ public abstract class BasePage<T extends BasePage<T>> extends CommonObject<T> {
         return t;
     }
 
-    public <P extends BasePage<P>> P nextPage(P page) {
+    public static <P extends BasePage<P>> P next(P page) {
         page.setAndGetUrl();
         return page;
     }
 
-    public <P extends BasePage<P>> P nextPage(P page, String... params) {
+    public static <P extends BasePage<P>> P next(P page, String... params) {
         return nextTemplatePage(page, null, params);
     }
 
-    public <P extends BasePage<P>> P nextTemplatePage(P page, String templateName, String... params) {
+    public static <P extends BasePage<P>> P nextTemplatePage(P page, String templateName, String... params) {
         page.setAndGetUrl(templateName, params);
         return page;
     }
@@ -98,7 +99,7 @@ public abstract class BasePage<T extends BasePage<T>> extends CommonObject<T> {
 
     public T assertCurrentUrl(String expectedPath) {
         String actUrl = driver.getCurrentUrl();
-        assertThat(actUrl).endsWith(expectedPath);
+        assertThat(actUrl).as("current url").endsWith(expectedPath);
         return (T) this;
     }
 

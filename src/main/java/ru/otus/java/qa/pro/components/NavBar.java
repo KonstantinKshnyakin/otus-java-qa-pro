@@ -1,9 +1,9 @@
 package ru.otus.java.qa.pro.components;
 
 import com.google.inject.Inject;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import ru.otus.java.qa.pro.elements.Button;
+import ru.otus.java.qa.pro.settings.TestContext;
 
 public class NavBar extends BaseComponent<NavBar> {
 
@@ -19,8 +19,8 @@ public class NavBar extends BaseComponent<NavBar> {
     private Button myEducation;
 
     @Inject
-    public NavBar(WebDriver driver) {
-        super(driver);
+    public NavBar(TestContext testContext) {
+        super(testContext);
     }
 
     public NavBar clickLogoButton() {

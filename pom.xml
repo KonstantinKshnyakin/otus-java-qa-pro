@@ -16,12 +16,14 @@
 
         <!--dependencies-->
         <guice.version>7.0.0</guice.version>
-        <junit.version>5.10.2</junit.version>
+        <junit.version>5.10.3</junit.version>
+        <junit-suite.version>1.10.3</junit-suite.version>
         <selenium.version>4.22.0</selenium.version>
         <webdrivermanager.version>5.9.1</webdrivermanager.version>
         <assertj-core.version>3.26.0</assertj-core.version>
         <htmlelements.version>1.20.0</htmlelements.version>
         <jsoup.version>1.17.2</jsoup.version>
+        <cucumber.version>7.18.0</cucumber.version>
 
         <!--        plugins-->
         <surefire.version>3.3.0</surefire.version>
@@ -47,6 +49,11 @@
             <version>${junit.version}</version>
         </dependency>
         <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-suite-engine</artifactId>
+            <version>${junit-suite.version}</version>
+        </dependency>
+        <dependency>
             <groupId>com.google.inject</groupId>
             <artifactId>guice</artifactId>
             <version>${guice.version}</version>
@@ -66,6 +73,26 @@
             <artifactId>htmlelements-java</artifactId>
             <version>${htmlelements.version}</version>
         </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>${cucumber.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-junit-platform-engine</artifactId>
+            <version>${cucumber.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-guice</artifactId>
+            <version>${cucumber.version}</version>
+        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>io.cucumber</groupId>-->
+<!--            <artifactId>cucumber-picocontainer</artifactId>-->
+<!--            <version>${cucumber.version}</version>-->
+<!--        </dependency>-->
     </dependencies>
 
     <profiles>
@@ -85,7 +112,7 @@
                 <version>${surefire.version}</version>
                 <configuration>
                     <systemPropertyVariables>
-                        <base.url>${base.url}</base.url>
+                        <base.url>https://otus.ru</base.url>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>

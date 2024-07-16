@@ -4,10 +4,11 @@ import static ru.otus.java.qa.pro.elements.ElementInit.buttonByXPath;
 import static ru.otus.java.qa.pro.util.cashe.CacheId.SELECT_DIRECTION;
 
 import com.google.inject.Inject;
-import org.openqa.selenium.WebDriver;
 import ru.otus.java.qa.pro.components.BaseComponent;
 import ru.otus.java.qa.pro.data.CoursesDirection;
 import ru.otus.java.qa.pro.elements.Button;
+import ru.otus.java.qa.pro.settings.TestContext;
+
 import java.util.concurrent.ThreadLocalRandom;
 
 public class EducationDropdownMenu extends BaseComponent<EducationDropdownMenu> {
@@ -18,8 +19,8 @@ public class EducationDropdownMenu extends BaseComponent<EducationDropdownMenu> 
     public static final String ALL_EVENTS_BY_INDEX_SELECTOR = "//div[./p[text()='События']]/descendant::a[%d]";
 
     @Inject
-    public EducationDropdownMenu(WebDriver driver) {
-        super(driver);
+    public EducationDropdownMenu(TestContext testContext) {
+        super(testContext);
     }
 
     public EducationDropdownMenu clickAllCourseByDirection(String name) {

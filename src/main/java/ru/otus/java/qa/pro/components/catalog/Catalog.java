@@ -103,7 +103,7 @@ public class Catalog extends HtmlElement {
 
     public Catalog showAllCourses() {
         while (showMoreButton.exists()) {
-            showMoreButton.moveToElementAndClick();
+            showMoreButton.moveToElementAndJSClick();
         }
         return this;
     }

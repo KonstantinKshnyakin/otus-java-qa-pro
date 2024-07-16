@@ -3,12 +3,12 @@ package ru.otus.java.qa.pro.driver.impl;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import ru.otus.java.qa.pro.driver.IDriver;
+import ru.otus.java.qa.pro.driver.IDriverCreator;
 
-public class ChromeWebDriver implements IDriver {
+public class ChromeCreator implements IDriverCreator {
 
     @Override
-    public WebDriver newDriver() {
+    public WebDriver createDriver() {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--no-sandbox");
         chromeOptions.addArguments("--no-first-run");
