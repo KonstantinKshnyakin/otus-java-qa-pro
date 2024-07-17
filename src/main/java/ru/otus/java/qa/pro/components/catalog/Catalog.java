@@ -11,9 +11,7 @@ import org.openqa.selenium.support.FindBy;
 import ru.otus.java.qa.pro.components.BaseComponent;
 import ru.otus.java.qa.pro.elements.Button;
 import ru.otus.java.qa.pro.elements.CourseBlock;
-import ru.otus.java.qa.pro.settings.TestContext;
-import ru.yandex.qatools.htmlelements.element.HtmlElement;
-
+import ru.otus.java.qa.pro.context.TestContext;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -21,7 +19,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
-import java.util.stream.Collectors;
 
 public class Catalog extends BaseComponent<DirectionLeftBar> {
 
@@ -34,8 +31,6 @@ public class Catalog extends BaseComponent<DirectionLeftBar> {
     public Catalog(TestContext testContext) {
         super(testContext);
     }
-
-
 
     public Catalog findAllCoursesWithDateIsMinAndAssertTitleAndDate(boolean isMin) {
         List<LocalDate> allDate = findAllDate();
@@ -59,9 +54,9 @@ public class Catalog extends BaseComponent<DirectionLeftBar> {
 
     public Catalog findAllCoursesWithMinMaxDate() {
         List<LocalDate> allDate = findAllDate().stream().sorted().toList();
+        assertThat(allDate).as("all courses").size().isGreaterThan(0);
         LocalDate minDate = allDate.get(0);
         LocalDate maxDate = allDate.get(allDate.size() - 1);
-        System.out.println("maxDate: %s, minDate: %s".formatted(maxDate, minDate));
         List<CourseBlock> allCoursesWithDate = findAllCoursesWithDate(maxDate, minDate);
         cache.put(ALL_COURSES_WITH_DATE, allCoursesWithDate);
         return this;
@@ -73,7 +68,7 @@ public class Catalog extends BaseComponent<DirectionLeftBar> {
         return this;
     }
 
-    public Catalog print() {
+    public Catalog printCourseBlock() {
         List<CourseBlock> courseBlockList = cache.getCourseBlockList(ALL_COURSES_WITH_DATE);
         courseBlockList.forEach(cb -> {
             System.out.println("%s %s".formatted(cb.getTitle(), cb.getDate()));
@@ -82,6 +77,7 @@ public class Catalog extends BaseComponent<DirectionLeftBar> {
     }
 
     public Catalog showAllCourses() {
+        showMoreButton.waitForElementNotVisible();
         while (showMoreButton.exists()) {
             showMoreButton.moveToElementAndJSClick();
         }

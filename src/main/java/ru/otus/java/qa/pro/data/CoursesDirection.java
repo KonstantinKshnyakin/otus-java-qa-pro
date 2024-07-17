@@ -1,7 +1,6 @@
 package ru.otus.java.qa.pro.data;
 
 import ru.otus.java.qa.pro.exceptions.UITestException;
-
 import java.util.Arrays;
 
 public enum CoursesDirection {

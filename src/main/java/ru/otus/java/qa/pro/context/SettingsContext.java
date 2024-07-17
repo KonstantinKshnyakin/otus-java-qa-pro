@@ -1,4 +1,4 @@
-package ru.otus.java.qa.pro.settings;
+package ru.otus.java.qa.pro.context;
 
 import com.google.inject.Inject;
 import io.cucumber.guice.ScenarioScoped;
@@ -7,16 +7,16 @@ import ru.otus.java.qa.pro.pages.CoursePage;
 import ru.otus.java.qa.pro.pages.MainPage;
 
 @ScenarioScoped
-public class PageContext {
+public class SettingsContext {
 
     private final MainPage mainPage;
     private final CourseCatalogPage courseCatalogPage;
     private final CoursePage coursePage;
 
     @Inject
-    public PageContext(MainPage mainPage,
-                       CourseCatalogPage courseCatalogPage,
-                       CoursePage coursePage) {
+    public SettingsContext(MainPage mainPage,
+                           CourseCatalogPage courseCatalogPage,
+                           CoursePage coursePage) {
         this.mainPage = mainPage;
         this.courseCatalogPage = courseCatalogPage;
         this.coursePage = coursePage;

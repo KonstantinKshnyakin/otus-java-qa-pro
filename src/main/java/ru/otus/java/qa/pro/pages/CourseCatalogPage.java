@@ -7,7 +7,7 @@ import ru.otus.java.qa.pro.annotations.Path;
 import ru.otus.java.qa.pro.components.NavBar;
 import ru.otus.java.qa.pro.components.catalog.Catalog;
 import ru.otus.java.qa.pro.components.catalog.DirectionLeftBar;
-import ru.otus.java.qa.pro.settings.TestContext;
+import ru.otus.java.qa.pro.context.TestContext;
 
 @Path("/catalog/courses")
 public class CourseCatalogPage extends BasePage<CourseCatalogPage> {

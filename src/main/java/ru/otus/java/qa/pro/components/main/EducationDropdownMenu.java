@@ -7,8 +7,7 @@ import com.google.inject.Inject;
 import ru.otus.java.qa.pro.components.BaseComponent;
 import ru.otus.java.qa.pro.data.CoursesDirection;
 import ru.otus.java.qa.pro.elements.Button;
-import ru.otus.java.qa.pro.settings.TestContext;
-
+import ru.otus.java.qa.pro.context.TestContext;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class EducationDropdownMenu extends BaseComponent<EducationDropdownMenu> {

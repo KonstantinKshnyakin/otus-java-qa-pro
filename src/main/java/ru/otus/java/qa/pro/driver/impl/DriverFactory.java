@@ -7,7 +7,7 @@ import ru.otus.java.qa.pro.driver.IDriverCreator;
 import ru.otus.java.qa.pro.driver.IDriverFactory;
 import ru.otus.java.qa.pro.exceptions.DriverTypeNotSupported;
 import ru.otus.java.qa.pro.listeners.ActionsListeners;
-import ru.otus.java.qa.pro.settings.TestContext;
+import ru.otus.java.qa.pro.context.TestContext;
 
 public class DriverFactory implements IDriverFactory {
 

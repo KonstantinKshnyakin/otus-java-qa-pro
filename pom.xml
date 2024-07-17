@@ -112,7 +112,7 @@
                 <version>${surefire.version}</version>
                 <configuration>
                     <systemPropertyVariables>
-                        <base.url>https://otus.ru</base.url>
+                        <base.url>${base.url}</base.url>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>

@@ -1,10 +1,7 @@
 package ru.otus.java.qa.pro.elements;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
-
-import java.time.*;
 
 public class CheckBox extends BaseElement {
 
@@ -24,14 +21,14 @@ public class CheckBox extends BaseElement {
     public void select() {
         if (!isSelected()) {
             click();
-            elementSelectionStateToBe(true);
+            waitCheckboxIs(true);
         }
     }
 
     public void deselect() {
         if (isSelected()) {
             getWrappedElement().click();
-            elementSelectionStateToBe(false);
+            waitCheckboxIs(false);
         }
     }
 

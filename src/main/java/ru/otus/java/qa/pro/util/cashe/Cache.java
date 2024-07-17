@@ -2,7 +2,6 @@ package ru.otus.java.qa.pro.util.cashe;
 
 import ru.otus.java.qa.pro.data.CoursesDirection;
 import ru.otus.java.qa.pro.elements.CourseBlock;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

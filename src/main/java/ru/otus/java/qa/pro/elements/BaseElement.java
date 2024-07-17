@@ -4,8 +4,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import ru.otus.java.qa.pro.settings.TestContext;
+import ru.otus.java.qa.pro.context.TestContext;
 import ru.otus.java.qa.pro.util.Waiter;
 import ru.otus.java.qa.pro.util.WebDriverManager;
 import ru.yandex.qatools.htmlelements.element.HtmlElement;
@@ -15,12 +14,9 @@ public abstract class BaseElement extends HtmlElement {
     protected final Waiter waiter;
     protected final Actions actions;
     protected final WebDriver webDriver;
-    private TestContext testContext;
 
     public BaseElement() {
-        System.out.println("BaseElement thread1234: " + Thread.currentThread());
         this.webDriver = WebDriverManager.getWebDriver();
-        System.out.println("BaseElement webDriver: " + this.webDriver);
         this.waiter = new Waiter(webDriver);
         this.actions = new Actions(webDriver);
     }
@@ -57,10 +53,6 @@ public abstract class BaseElement extends HtmlElement {
         executeJSScript("arguments[0].click();", element);
     }
 
-    public void moveToElement() {
-        moveToElement(element());
-    }
-
     public void moveToElementAndJSClick() {
         moveToElement();
         clickJS();
@@ -76,38 +68,50 @@ public abstract class BaseElement extends HtmlElement {
         click();
     }
 
+    public void moveToElement() {
+        moveToElement(element());
+    }
+
     protected void moveToElement(WebElement element) {
         actions.moveToElement(element).build().perform();
     }
 
     @Override
     public void click() {
-        elementToBeClickable();
+        waitElementToBeClickable();
         element().click();
     }
 
-    public boolean elementToBeClickable() {
-        return elementToBeClickable(this);
+    public boolean waitElementToBeClickable() {
+        return waitElementToBeClickable(this);
     }
 
-    protected boolean elementToBeClickable(WebElement element) {
-        return waiter.elementToBeClickable(element);
+    protected boolean waitElementToBeClickable(WebElement element) {
+        return waiter.waitElementToBeClickable(element);
     }
 
-    public boolean elementSelectionStateToBe(boolean selected) {
-        return elementSelectionStateToBe(this, selected);
+    public boolean waitCheckboxIs(boolean selected) {
+        return waitCheckboxIs(this, selected);
     }
 
-    protected boolean elementSelectionStateToBe(WebElement element, boolean selected) {
-        return waiter.elementSelectionStateToBe(element, selected);
+    protected boolean waitCheckboxIs(WebElement element, boolean selected) {
+        return waiter.waitCheckboxIs(element, selected);
     }
 
-    protected boolean visibilityOf(WebElement element) {
-        return waiter.visibilityOf(element);
+    protected boolean waitForElementVisible(WebElement element) {
+        return waiter.waitForElementVisible(element);
     }
 
-    public boolean visibilityOf() {
-        return waiter.visibilityOf(element());
+    public boolean waitForElementVisible() {
+        return waitForElementVisible(element());
+    }
+
+    protected boolean waitForElementNotVisible(WebElement element) {
+        return waiter.waitForElementNotVisible(element());
+    }
+
+    public boolean waitForElementNotVisible() {
+        return waitForElementNotVisible(element());
     }
 
 }

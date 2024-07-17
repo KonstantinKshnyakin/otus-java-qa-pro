@@ -3,7 +3,7 @@ package ru.otus.java.qa.pro.components;
 import com.google.inject.Inject;
 import org.openqa.selenium.support.FindBy;
 import ru.otus.java.qa.pro.elements.Button;
-import ru.otus.java.qa.pro.settings.TestContext;
+import ru.otus.java.qa.pro.context.TestContext;
 
 public class NavBar extends BaseComponent<NavBar> {
 

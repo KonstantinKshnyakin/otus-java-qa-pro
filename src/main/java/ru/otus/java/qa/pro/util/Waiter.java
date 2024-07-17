@@ -5,7 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
 
 public class Waiter {
@@ -25,7 +24,7 @@ public class Waiter {
         }
     }
 
-    public boolean waitForConditionBool(ExpectedCondition<Boolean> condition) {
+    public Boolean waitForConditionBool(ExpectedCondition<Boolean> condition) {
         try {
             return webDriverWait.until(condition);
         } catch (Exception ex) {
@@ -33,15 +32,11 @@ public class Waiter {
         }
     }
 
-    public boolean elementToBeClickable(WebElement element) {
+    public boolean waitElementToBeClickable(WebElement element) {
         return waitForCondition(ExpectedConditions.elementToBeClickable(element));
     }
 
-    public boolean visibilityOf(WebElement element) {
-        return waitForCondition(ExpectedConditions.visibilityOf(element)) ;
-    }
-
-    public boolean elementSelectionStateToBe(WebElement element, boolean selected) {
+    public boolean waitCheckboxIs(WebElement element, boolean selected) {
         return waitForConditionBool(ExpectedConditions.elementSelectionStateToBe(element, selected));
     }
 

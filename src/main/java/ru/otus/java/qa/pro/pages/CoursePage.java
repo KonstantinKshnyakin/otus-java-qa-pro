@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ru.otus.java.qa.pro.annotations.Path;
 import ru.otus.java.qa.pro.annotations.PathTemplate;
-import ru.otus.java.qa.pro.settings.TestContext;
+import ru.otus.java.qa.pro.context.TestContext;
 
 @Path(templates = @PathTemplate(template = "/lessons/$1/"))
 public class CoursePage extends BasePage<CoursePage> {
