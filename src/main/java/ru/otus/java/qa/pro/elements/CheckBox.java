@@ -4,14 +4,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 
+import java.time.*;
+
 public class CheckBox extends BaseElement {
 
     public WebElement getLabel() {
-        try {
-            return getWrappedElement().findElement(By.xpath("child::label"));
-        } catch (NoSuchElementException e) {
-            return null;
-        }
+        return element().findElement(By.xpath("child::label"));
     }
 
     public String getLabelText() {
@@ -25,13 +23,15 @@ public class CheckBox extends BaseElement {
 
     public void select() {
         if (!isSelected()) {
-            getWrappedElement().click();
+            click();
+            elementSelectionStateToBe(true);
         }
     }
 
     public void deselect() {
         if (isSelected()) {
             getWrappedElement().click();
+            elementSelectionStateToBe(false);
         }
     }
 
@@ -45,7 +45,14 @@ public class CheckBox extends BaseElement {
 
     @Override
     public boolean isSelected() {
-        return Boolean.parseBoolean(getWrappedElement().getAttribute("value"));
+        return Boolean.parseBoolean(this.getAttribute("value"));
+    }
+
+    @Override
+    public void click() {
+        WebElement input = getLabel();
+        scrollIntoView(input);
+        clickJS(input);
     }
 
 }

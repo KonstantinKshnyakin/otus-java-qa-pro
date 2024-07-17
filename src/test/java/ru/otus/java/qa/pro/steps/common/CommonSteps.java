@@ -7,12 +7,13 @@ import ru.otus.java.qa.pro.settings.TestContext;
 
 public class CommonSteps {
 
-    @Inject
-    private TestContext testContext;
-    @Inject
-    private DriverFactory driverFactory;
+    private final TestContext testContext;
+    private final DriverFactory driverFactory;
 
-    public CommonSteps() {
+    @Inject
+    public CommonSteps(TestContext testContext, DriverFactory driverFactory) {
+        this.testContext = testContext;
+        this.driverFactory = driverFactory;
         System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++");
         System.out.println("CommonSteps thread1234: " + Thread.currentThread());
         System.out.println(this);

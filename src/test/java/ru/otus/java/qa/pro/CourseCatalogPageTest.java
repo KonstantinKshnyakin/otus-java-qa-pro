@@ -26,7 +26,7 @@ public class CourseCatalogPageTest {
                 next(coursePage, "kotlin-qa-engineer")
                 .doThis(page -> {
                     page
-                            .assertUrl()
+                            .assertCurrentUrl()
                             .assertTitle("Kotlin QA Engineer");
                 });
     }

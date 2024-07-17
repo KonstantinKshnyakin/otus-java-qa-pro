@@ -1,7 +1,10 @@
 package ru.otus.java.qa.pro.util.cashe;
 
 import ru.otus.java.qa.pro.data.CoursesDirection;
+import ru.otus.java.qa.pro.elements.CourseBlock;
+
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Cache {
@@ -26,6 +29,10 @@ public class Cache {
 
     public Integer getInteger(String key) {
         return (Integer) map.get(key);
+    }
+
+    public List<CourseBlock> getCourseBlockList(String key) {
+        return (List<CourseBlock>) map.get(key);
     }
 
     @Override

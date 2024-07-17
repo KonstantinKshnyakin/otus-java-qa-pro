@@ -26,8 +26,4 @@ public class CoursePage extends BasePage<CoursePage> {
         return this;
     }
 
-    public CoursePage assertUrl() {
-        return assertCurrentUrl(url);
-    }
-
 }

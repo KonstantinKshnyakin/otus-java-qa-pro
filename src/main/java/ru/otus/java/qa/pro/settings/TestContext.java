@@ -12,10 +12,13 @@ public class TestContext {
     private WebDriver webDriver;
     private String webDriverName;
     private final Cache cache;
+//    private final PageContext pageContext;
 
     @Inject
+//    public TestContext(PageContext pageContext, Cache cache) {
     public TestContext(Cache cache) {
         this.cache = cache;
+//        this.pageContext = pageContext;
         System.out.println("GuiceScoped cache" + cache);
         System.out.println("GuiceScoped " + this);
         System.out.println("GuiceScoped " + Thread.currentThread());
@@ -41,5 +44,9 @@ public class TestContext {
     public Cache getCache() {
         return cache;
     }
+
+//    public PageContext getPages() {
+//        return pageContext;
+//    }
 
 }

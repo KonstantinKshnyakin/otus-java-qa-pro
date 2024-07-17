@@ -2,12 +2,15 @@ package ru.otus.java.qa.pro.pages;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.otus.java.qa.pro.annotations.Path;
 import ru.otus.java.qa.pro.annotations.PathTemplate;
 import ru.otus.java.qa.pro.commons.CommonObject;
 import ru.otus.java.qa.pro.exceptions.UITestException;
 import ru.otus.java.qa.pro.settings.TestContext;
 
+import java.time.Duration;
 import java.util.Arrays;
 import java.util.function.Consumer;
 
@@ -101,6 +104,10 @@ public abstract class BasePage<T extends BasePage<T>> extends CommonObject<T> {
         String actUrl = driver.getCurrentUrl();
         assertThat(actUrl).as("current url").endsWith(expectedPath);
         return (T) this;
+    }
+
+    public T assertCurrentUrl() {
+        return assertCurrentUrl(url);
     }
 
 }

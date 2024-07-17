@@ -38,6 +38,11 @@ public class NavBar extends BaseComponent<NavBar> {
         return this;
     }
 
+    public NavBar clickJSEducationButton() {
+        education.clickJS();
+        return this;
+    }
+
     public NavBar clickInfoButton() {
         info.click();
         return this;

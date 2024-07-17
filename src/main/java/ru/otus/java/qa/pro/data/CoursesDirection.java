@@ -1,5 +1,9 @@
 package ru.otus.java.qa.pro.data;
 
+import ru.otus.java.qa.pro.exceptions.UITestException;
+
+import java.util.Arrays;
+
 public enum CoursesDirection {
 
     PROGRAMMING("Программирование", "/programming/"),
@@ -33,6 +37,14 @@ public enum CoursesDirection {
 
     public String getPath() {
         return path;
+    }
+
+
+    public static CoursesDirection valueOfDirection(String direction) {
+        return Arrays.stream(CoursesDirection.values())
+                .filter(cd -> cd.getDirection().equals(direction))
+                .findFirst()
+                .orElseThrow(() -> new UITestException("Direction '%s' not found"));
     }
 
 }

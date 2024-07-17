@@ -16,14 +16,15 @@ public class CommonObject<T extends CommonObject<T>> {
     protected final Cache cache;
 
     public CommonObject(TestContext testContext) {
+        this.testContext = testContext;
+        this.driver = this.testContext.getWebDriver();
+        this.cache = this.testContext.getCache();
         System.out.println("-----------------------------------------------------------------------");
         System.out.println(this);
         System.out.println(testContext);
         System.out.println("CommonObject thread1234: " + Thread.currentThread());
+        System.out.println("CommonObject webDriver: " + this.driver);
         System.out.println("-----------------------------------------------------------------------");
-        this.testContext = testContext;
-        this.driver = this.testContext.getWebDriver();
-        this.cache = this.testContext.getCache();
         PageFactory.initElements(new HtmlElementDecorator(new HtmlElementLocatorFactory(driver)), this);
     }
 

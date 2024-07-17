@@ -4,15 +4,17 @@ import com.google.inject.Inject;
 import io.cucumber.java.ru.И;
 import io.cucumber.java.ru.Тогда;
 import ru.otus.java.qa.pro.pages.CoursePage;
+import ru.otus.java.qa.pro.settings.PageContext;
 
 import static ru.otus.java.qa.pro.pages.BasePage.next;
 
 public class CoursePageSteps {
 
-    @Inject
     private CoursePage page;
 
-    public CoursePageSteps() {
+    @Inject
+    public CoursePageSteps(PageContext pageContext) {
+        page = pageContext.getCoursePage();
         System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++");
         System.out.println("CoursePageSteps thread1234: " + Thread.currentThread());
         System.out.println("page " + page);
@@ -29,7 +31,7 @@ public class CoursePageSteps {
     @И("проверяем урл")
     public void assertUrl() {
         System.err.println("step " + "проверяем урл");
-        page.assertUrl();
+        page.assertCurrentUrl();
     }
 
     @И("проверяем загаловок {string}")

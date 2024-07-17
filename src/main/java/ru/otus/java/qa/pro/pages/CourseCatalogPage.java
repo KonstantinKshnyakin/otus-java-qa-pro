@@ -14,15 +14,17 @@ public class CourseCatalogPage extends BasePage<CourseCatalogPage> {
 
     private final NavBar navBar;
     private final DirectionLeftBar directionLeftBar;
-    private Catalog catalog;
+    private final Catalog catalog;
 
     @Inject
     public CourseCatalogPage(TestContext testContext,
                              NavBar navBar,
+                             Catalog catalog,
                              DirectionLeftBar directionLeftBar) {
         super(testContext);
         this.navBar = navBar;
         this.directionLeftBar = directionLeftBar;
+        this.catalog = catalog;
     }
 
     public Catalog catalog() {

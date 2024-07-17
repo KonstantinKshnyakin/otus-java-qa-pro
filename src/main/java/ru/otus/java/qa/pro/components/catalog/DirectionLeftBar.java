@@ -31,24 +31,27 @@ public class DirectionLeftBar extends BaseComponent<DirectionLeftBar> {
     }
 
     public DirectionLeftBar clickCollapseButton() {
-        collapse.click();
+        if (collapse.exists()) {
+            collapse.click();
+        }
         return this;
     }
 
     public DirectionLeftBar clickShowAllButton() {
-        collapse.click();
+        if (showAll.exists()) {
+            showAll.click();
+        }
         return this;
     }
 
-    public DirectionLeftBar selectCheckBoxByDirection(CoursesDirection checkBoxName) {
-        CheckBox checkBox = checkBoxByXPath(CHECK_BOX_BY_NAME_LOCATOR.formatted(checkBoxName.getDirection()));
-        checkBox.select();
-        return this;
+    public DirectionLeftBar setCheckBoxByDirectionIs(String checkBoxDirection, boolean isSelect) {
+        CoursesDirection coursesDirection = CoursesDirection.valueOfDirection(checkBoxDirection);
+        return setCheckBoxByDirectionIs(coursesDirection, isSelect);
     }
 
-    public DirectionLeftBar deselectCheckBoxByDirection(CoursesDirection checkBoxName) {
-        CheckBox checkBox = checkBoxByXPath(CHECK_BOX_BY_NAME_LOCATOR.formatted(checkBoxName));
-        checkBox.deselect();
+    public DirectionLeftBar setCheckBoxByDirectionIs(CoursesDirection checkBoxDirection, boolean isSelect) {
+        CheckBox checkBox = checkBoxByXPath(CHECK_BOX_BY_NAME_LOCATOR.formatted(checkBoxDirection.getDirection()));
+        checkBox.set(isSelect);
         return this;
     }
 
@@ -58,8 +61,8 @@ public class DirectionLeftBar extends BaseComponent<DirectionLeftBar> {
                 .filter(CheckBox::isSelected)
                 .map(CheckBox::getText)
                 .toList();
-        assertThat(selectedCheckBoxes.size()).isEqualTo(1);
-        assertThat(selectedCheckBoxes.get(0)).isEqualTo(expDirection);
+        assertThat(selectedCheckBoxes.size()).as("number of selected checkboxes").isEqualTo(1);
+        assertThat(selectedCheckBoxes.get(0)).as("selected checkbox").isEqualTo(expDirection);
         return this;
     }
 
