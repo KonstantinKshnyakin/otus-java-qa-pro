@@ -2,36 +2,41 @@ package ru.otus.java.qa.pro.context;
 
 import com.google.inject.Inject;
 import io.cucumber.guice.ScenarioScoped;
-import ru.otus.java.qa.pro.pages.CourseCatalogPage;
-import ru.otus.java.qa.pro.pages.CoursePage;
-import ru.otus.java.qa.pro.pages.MainPage;
+import org.openqa.selenium.WebDriver;
+import ru.otus.java.qa.pro.util.WebDriverManager;
+import ru.otus.java.qa.pro.util.cashe.Cache;
 
 @ScenarioScoped
 public class SettingsContext {
 
-    private final MainPage mainPage;
-    private final CourseCatalogPage courseCatalogPage;
-    private final CoursePage coursePage;
+    private WebDriver webDriver;
+    private String webDriverName;
+    private final Cache cache;
 
     @Inject
-    public SettingsContext(MainPage mainPage,
-                           CourseCatalogPage courseCatalogPage,
-                           CoursePage coursePage) {
-        this.mainPage = mainPage;
-        this.courseCatalogPage = courseCatalogPage;
-        this.coursePage = coursePage;
+    public SettingsContext(Cache cache) {
+        this.cache = cache;
     }
 
-    public MainPage getMainPage() {
-        return mainPage;
+    public String getWebDriverName() {
+        return webDriverName;
     }
 
-    public CourseCatalogPage getCourseCatalogPage() {
-        return courseCatalogPage;
+    public void setWebDriverName(String webDriverName) {
+        this.webDriverName = webDriverName;
     }
 
-    public CoursePage getCoursePage() {
-        return coursePage;
+    public WebDriver getWebDriver() {
+        return webDriver;
+    }
+
+    public void setDriver(WebDriver webDriver) {
+        WebDriverManager.setWebDriver(webDriver);
+        this.webDriver = webDriver;
+    }
+
+    public Cache getCache() {
+        return cache;
     }
 
 }

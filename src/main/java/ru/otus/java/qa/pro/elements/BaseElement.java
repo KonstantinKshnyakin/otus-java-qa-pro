@@ -4,7 +4,6 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import ru.otus.java.qa.pro.context.TestContext;
 import ru.otus.java.qa.pro.util.Waiter;
 import ru.otus.java.qa.pro.util.WebDriverManager;
 import ru.yandex.qatools.htmlelements.element.HtmlElement;

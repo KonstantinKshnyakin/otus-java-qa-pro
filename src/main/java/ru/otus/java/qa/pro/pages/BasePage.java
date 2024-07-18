@@ -6,7 +6,7 @@ import ru.otus.java.qa.pro.annotations.Path;
 import ru.otus.java.qa.pro.annotations.PathTemplate;
 import ru.otus.java.qa.pro.commons.CommonObject;
 import ru.otus.java.qa.pro.exceptions.UITestException;
-import ru.otus.java.qa.pro.context.TestContext;
+import ru.otus.java.qa.pro.context.SettingsContext;
 import java.util.Arrays;
 import java.util.function.Consumer;
 
@@ -15,8 +15,8 @@ public abstract class BasePage<T extends BasePage<T>> extends CommonObject<T> {
     protected final String baseUrl = System.getProperty("base.url");
     protected String url;
 
-    public BasePage(TestContext testContext) {
-        super(testContext);
+    public BasePage(SettingsContext settingsContext) {
+        super(settingsContext);
     }
 
     public T doThis(Consumer<T> consumer) {
@@ -70,8 +70,8 @@ public abstract class BasePage<T extends BasePage<T>> extends CommonObject<T> {
     }
 
     protected String setAndGetUrl(String templateName, String... params) {
-        Class<?> paheClass = getClass();
-        if (paheClass.isAnnotationPresent(Path.class)) {
+        Class<?> pageClass = getClass();
+        if (pageClass.isAnnotationPresent(Path.class)) {
             Path path = getClass().getDeclaredAnnotation(Path.class);
             PathTemplate[] templates = path.templates();
             if (templates == null) {
@@ -93,7 +93,7 @@ public abstract class BasePage<T extends BasePage<T>> extends CommonObject<T> {
             url = baseUrl + pathTemplate;
             return url;
         }
-        throw new UITestException("There is no @Path annotation above the class " + paheClass.getSimpleName());
+        throw new UITestException("There is no @Path annotation above the class " + pageClass.getSimpleName());
     }
 
     public T assertCurrentUrl(String expectedPath) {

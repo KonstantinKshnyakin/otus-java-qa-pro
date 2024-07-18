@@ -3,7 +3,7 @@ package ru.otus.java.qa.pro.commons;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import ru.otus.java.qa.pro.exceptions.UITestException;
-import ru.otus.java.qa.pro.context.TestContext;
+import ru.otus.java.qa.pro.context.SettingsContext;
 import ru.otus.java.qa.pro.util.cashe.Cache;
 import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementDecorator;
 import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementLocatorFactory;
@@ -11,14 +11,12 @@ import java.time.Duration;
 
 public class CommonObject<T extends CommonObject<T>> {
 
-    protected final TestContext testContext;
     protected final WebDriver driver;
     protected final Cache cache;
 
-    public CommonObject(TestContext testContext) {
-        this.testContext = testContext;
-        this.driver = this.testContext.getWebDriver();
-        this.cache = this.testContext.getCache();
+    public CommonObject(SettingsContext settingsContext) {
+        this.driver = settingsContext.getWebDriver();
+        this.cache = settingsContext.getCache();
         PageFactory.initElements(new HtmlElementDecorator(new HtmlElementLocatorFactory(driver)), this);
     }
 

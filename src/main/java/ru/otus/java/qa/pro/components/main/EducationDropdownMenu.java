@@ -7,7 +7,7 @@ import com.google.inject.Inject;
 import ru.otus.java.qa.pro.components.BaseComponent;
 import ru.otus.java.qa.pro.data.CoursesDirection;
 import ru.otus.java.qa.pro.elements.Button;
-import ru.otus.java.qa.pro.context.TestContext;
+import ru.otus.java.qa.pro.context.SettingsContext;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class EducationDropdownMenu extends BaseComponent<EducationDropdownMenu> {
@@ -18,8 +18,8 @@ public class EducationDropdownMenu extends BaseComponent<EducationDropdownMenu> 
     public static final String ALL_EVENTS_BY_INDEX_SELECTOR = "//div[./p[text()='События']]/descendant::a[%d]";
 
     @Inject
-    public EducationDropdownMenu(TestContext testContext) {
-        super(testContext);
+    public EducationDropdownMenu(SettingsContext settingsContext) {
+        super(settingsContext);
     }
 
     public EducationDropdownMenu clickAllCourseByDirection(String name) {

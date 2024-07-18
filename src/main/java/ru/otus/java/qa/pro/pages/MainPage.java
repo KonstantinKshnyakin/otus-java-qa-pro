@@ -4,7 +4,7 @@ import com.google.inject.Inject;
 import ru.otus.java.qa.pro.annotations.Path;
 import ru.otus.java.qa.pro.components.NavBar;
 import ru.otus.java.qa.pro.components.main.EducationDropdownMenu;
-import ru.otus.java.qa.pro.context.TestContext;
+import ru.otus.java.qa.pro.context.SettingsContext;
 
 @Path
 public class MainPage extends BasePage<MainPage> {
@@ -14,10 +14,10 @@ public class MainPage extends BasePage<MainPage> {
 
 
     @Inject
-    public MainPage(TestContext testContext,
+    public MainPage(SettingsContext settingsContext,
                     NavBar navBar,
                     EducationDropdownMenu educationDropdownMenu) {
-        super(testContext);
+        super(settingsContext);
         this.navBar = navBar;
         this.educationDropdownMenu = educationDropdownMenu;
     }

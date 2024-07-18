@@ -11,7 +11,7 @@ import org.openqa.selenium.support.FindBy;
 import ru.otus.java.qa.pro.components.BaseComponent;
 import ru.otus.java.qa.pro.elements.Button;
 import ru.otus.java.qa.pro.elements.CourseBlock;
-import ru.otus.java.qa.pro.context.TestContext;
+import ru.otus.java.qa.pro.context.SettingsContext;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -20,7 +20,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
-public class Catalog extends BaseComponent<DirectionLeftBar> {
+public class Catalog extends BaseComponent<Catalog> {
 
     @FindBy(xpath = "//section[.//div[text()='Каталог']]/descendant::a")
     private List<CourseBlock> allCourseBlock;
@@ -28,8 +28,8 @@ public class Catalog extends BaseComponent<DirectionLeftBar> {
     private Button showMoreButton;
 
     @Inject
-    public Catalog(TestContext testContext) {
-        super(testContext);
+    public Catalog(SettingsContext settingsContext) {
+        super(settingsContext);
     }
 
     public Catalog findAllCoursesWithDateIsMinAndAssertTitleAndDate(boolean isMin) {

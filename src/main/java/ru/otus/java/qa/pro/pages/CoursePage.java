@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ru.otus.java.qa.pro.annotations.Path;
 import ru.otus.java.qa.pro.annotations.PathTemplate;
-import ru.otus.java.qa.pro.context.TestContext;
+import ru.otus.java.qa.pro.context.SettingsContext;
 
 @Path(templates = @PathTemplate(template = "/lessons/$1/"))
 public class CoursePage extends BasePage<CoursePage> {
@@ -16,8 +16,8 @@ public class CoursePage extends BasePage<CoursePage> {
     private WebElement title;
 
     @Inject
-    public CoursePage(TestContext testContext) {
-        super(testContext);
+    public CoursePage(SettingsContext settingsContext) {
+        super(settingsContext);
     }
 
     public CoursePage assertTitle(String expTitle) {

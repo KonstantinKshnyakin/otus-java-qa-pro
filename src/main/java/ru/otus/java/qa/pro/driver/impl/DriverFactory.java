@@ -7,16 +7,16 @@ import ru.otus.java.qa.pro.driver.IDriverCreator;
 import ru.otus.java.qa.pro.driver.IDriverFactory;
 import ru.otus.java.qa.pro.exceptions.DriverTypeNotSupported;
 import ru.otus.java.qa.pro.listeners.ActionsListeners;
-import ru.otus.java.qa.pro.context.TestContext;
+import ru.otus.java.qa.pro.context.SettingsContext;
 
 public class DriverFactory implements IDriverFactory {
 
     @Inject
-    private TestContext testContext;
+    private SettingsContext settingsContext;
     private final String systemDriverName = System.getProperty("browser", "chrome").toLowerCase();
 
     public WebDriver getDriver() {
-        String contextDriverName = testContext.getWebDriverName();
+        String contextDriverName = settingsContext.getWebDriverName();
         String driverName = contextDriverName == null ? systemDriverName : contextDriverName.toLowerCase();
         IDriverCreator creator;
         switch (driverName) {

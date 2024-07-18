@@ -10,7 +10,7 @@ import ru.otus.java.qa.pro.components.BaseComponent;
 import ru.otus.java.qa.pro.data.CoursesDirection;
 import ru.otus.java.qa.pro.elements.Button;
 import ru.otus.java.qa.pro.elements.CheckBox;
-import ru.otus.java.qa.pro.context.TestContext;
+import ru.otus.java.qa.pro.context.SettingsContext;
 import java.util.List;
 
 public class DirectionLeftBar extends BaseComponent<DirectionLeftBar> {
@@ -25,8 +25,8 @@ public class DirectionLeftBar extends BaseComponent<DirectionLeftBar> {
     private List<CheckBox> allCheckBoxes;
 
     @Inject
-    public DirectionLeftBar(TestContext testContext) {
-        super(testContext);
+    public DirectionLeftBar(SettingsContext settingsContext) {
+        super(settingsContext);
     }
 
     public DirectionLeftBar clickCollapseButton() {

@@ -7,7 +7,7 @@ import ru.otus.java.qa.pro.annotations.Path;
 import ru.otus.java.qa.pro.components.NavBar;
 import ru.otus.java.qa.pro.components.catalog.Catalog;
 import ru.otus.java.qa.pro.components.catalog.DirectionLeftBar;
-import ru.otus.java.qa.pro.context.TestContext;
+import ru.otus.java.qa.pro.context.SettingsContext;
 
 @Path("/catalog/courses")
 public class CourseCatalogPage extends BasePage<CourseCatalogPage> {
@@ -17,11 +17,11 @@ public class CourseCatalogPage extends BasePage<CourseCatalogPage> {
     private final Catalog catalog;
 
     @Inject
-    public CourseCatalogPage(TestContext testContext,
+    public CourseCatalogPage(SettingsContext settingsContext,
                              NavBar navBar,
                              Catalog catalog,
                              DirectionLeftBar directionLeftBar) {
-        super(testContext);
+        super(settingsContext);
         this.navBar = navBar;
         this.directionLeftBar = directionLeftBar;
         this.catalog = catalog;

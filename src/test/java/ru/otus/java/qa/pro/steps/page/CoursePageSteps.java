@@ -6,15 +6,15 @@ import com.google.inject.Inject;
 import io.cucumber.java.ru.И;
 import io.cucumber.java.ru.Тогда;
 import ru.otus.java.qa.pro.pages.CoursePage;
-import ru.otus.java.qa.pro.context.SettingsContext;
+import ru.otus.java.qa.pro.context.PageContext;
 
 public class CoursePageSteps {
 
     private CoursePage page;
 
     @Inject
-    public CoursePageSteps(SettingsContext settingsContext) {
-        page = settingsContext.getCoursePage();
+    public CoursePageSteps(PageContext pageContext) {
+        page = pageContext.getCoursePage();
     }
 
     @Тогда("переходим на странцу курса {string}")

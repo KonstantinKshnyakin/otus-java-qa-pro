@@ -3,7 +3,7 @@ package ru.otus.java.qa.pro.components;
 import com.google.inject.Inject;
 import org.openqa.selenium.support.FindBy;
 import ru.otus.java.qa.pro.elements.Button;
-import ru.otus.java.qa.pro.context.TestContext;
+import ru.otus.java.qa.pro.context.SettingsContext;
 
 public class NavBar extends BaseComponent<NavBar> {
 
@@ -19,8 +19,8 @@ public class NavBar extends BaseComponent<NavBar> {
     private Button myEducation;
 
     @Inject
-    public NavBar(TestContext testContext) {
-        super(testContext);
+    public NavBar(SettingsContext settingsContext) {
+        super(settingsContext);
     }
 
     public NavBar clickLogoButton() {

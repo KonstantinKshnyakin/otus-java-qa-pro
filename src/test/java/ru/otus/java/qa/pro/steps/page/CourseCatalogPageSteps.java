@@ -9,7 +9,7 @@ import io.cucumber.java.ru.Пусть;
 import io.cucumber.java.ru.То;
 import ru.otus.java.qa.pro.components.catalog.Catalog;
 import ru.otus.java.qa.pro.pages.CourseCatalogPage;
-import ru.otus.java.qa.pro.context.SettingsContext;
+import ru.otus.java.qa.pro.context.PageContext;
 import java.time.LocalDate;
 
 public class CourseCatalogPageSteps {
@@ -18,8 +18,8 @@ public class CourseCatalogPageSteps {
     private Catalog catalog;
 
     @Inject
-    public CourseCatalogPageSteps(SettingsContext settingsContext) {
-        page = settingsContext.getCourseCatalogPage();
+    public CourseCatalogPageSteps(PageContext pageContext) {
+        page = pageContext.getCourseCatalogPage();
         catalog = page.catalog();
     }
 
