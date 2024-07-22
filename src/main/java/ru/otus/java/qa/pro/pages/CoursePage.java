@@ -1,4 +1,4 @@
-package ru.otus.java.qa.pro.pages.impl;
+package ru.otus.java.qa.pro.pages;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -21,7 +21,7 @@ public class CoursePage extends BasePage<CoursePage> {
     }
 
     public CoursePage assertTitle(String expTitle) {
-        assertThat(title.getText()).as("Проверка заголовка")
+        assertThat(title.getText()).as("title")
                 .isEqualTo(expTitle);
         return this;
     }

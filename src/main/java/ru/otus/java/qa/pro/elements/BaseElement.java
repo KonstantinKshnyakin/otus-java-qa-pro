@@ -4,7 +4,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import ru.otus.java.qa.pro.Waiter;
+import ru.otus.java.qa.pro.util.Waiter;
 import ru.otus.java.qa.pro.util.WebDriverManager;
 import ru.yandex.qatools.htmlelements.element.HtmlElement;
 
@@ -20,12 +20,24 @@ public abstract class BaseElement extends HtmlElement {
         this.actions = new Actions(webDriver);
     }
 
-    public WebDriver getDriver() {
+    protected WebDriver getDriver() {
         return webDriver;
     }
 
+    protected JavascriptExecutor getJavascriptExecutor() {
+        return (JavascriptExecutor) getDriver();
+    }
+
+    protected void executeScript(String script) {
+        getJavascriptExecutor().executeScript(script, element());
+    }
+
     public void scrollIntoView() {
-        ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", element());
+        executeScript("arguments[0].scrollIntoView(true);");
+    }
+
+    public void clickJS() {
+        executeScript("arguments[0].click();");
     }
 
     public void moveToElementAndClick() {

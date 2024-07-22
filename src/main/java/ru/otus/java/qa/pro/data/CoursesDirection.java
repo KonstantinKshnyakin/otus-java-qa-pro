@@ -1,5 +1,7 @@
 package ru.otus.java.qa.pro.data;
 
+import java.util.stream.Stream;
+
 public enum CoursesDirection {
 
     PROGRAMMING("Программирование", "/programming/"),
@@ -33,6 +35,13 @@ public enum CoursesDirection {
 
     public String getPath() {
         return path;
+    }
+
+    public static CoursesDirection valueOfByDirection(String direction) {
+        return Stream.of(CoursesDirection.values())
+                .filter(cd -> cd.getDirection().equals(direction))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Direction '%s' not found".formatted(direction)));
     }
 
 }

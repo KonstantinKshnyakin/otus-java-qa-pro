@@ -1,4 +1,4 @@
-package ru.otus.java.qa.pro;
+package ru.otus.java.qa.pro.util;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

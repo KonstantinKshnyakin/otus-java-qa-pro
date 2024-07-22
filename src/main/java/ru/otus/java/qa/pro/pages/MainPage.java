@@ -1,4 +1,4 @@
-package ru.otus.java.qa.pro.pages.impl;
+package ru.otus.java.qa.pro.pages;
 
 import com.google.inject.Inject;
 import org.openqa.selenium.WebDriver;

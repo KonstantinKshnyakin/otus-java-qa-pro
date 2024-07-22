@@ -30,24 +30,27 @@ public class DirectionLeftBar extends BaseComponent<DirectionLeftBar> {
     }
 
     public DirectionLeftBar clickCollapseButton() {
-        collapse.click();
+        if (collapse.exists()) {
+            collapse.click();
+        }
         return this;
     }
 
     public DirectionLeftBar clickShowAllButton() {
-        collapse.click();
+        if (showAll.exists()) {
+            showAll.click();
+        }
         return this;
     }
 
-    public DirectionLeftBar selectCheckBoxByDirection(CoursesDirection checkBoxName) {
-        CheckBox checkBox = checkBoxByXPath(CHECK_BOX_BY_NAME_LOCATOR.formatted(checkBoxName.getDirection()));
-        checkBox.select();
-        return this;
+    public DirectionLeftBar setCheckBoxByDirectionIs(String direction, boolean isSelected) {
+        CoursesDirection coursesDirection = CoursesDirection.valueOfByDirection(direction);
+        return setCheckBoxByDirectionIs(coursesDirection, isSelected);
     }
 
-    public DirectionLeftBar deselectCheckBoxByDirection(CoursesDirection checkBoxName) {
-        CheckBox checkBox = checkBoxByXPath(CHECK_BOX_BY_NAME_LOCATOR.formatted(checkBoxName));
-        checkBox.deselect();
+    public DirectionLeftBar setCheckBoxByDirectionIs(CoursesDirection direction, boolean isSelected) {
+        CheckBox checkBox = checkBoxByXPath(CHECK_BOX_BY_NAME_LOCATOR.formatted(direction));
+        checkBox.set(isSelected);
         return this;
     }
 
@@ -57,8 +60,8 @@ public class DirectionLeftBar extends BaseComponent<DirectionLeftBar> {
                 .filter(CheckBox::isSelected)
                 .map(CheckBox::getText)
                 .toList();
-        assertThat(selectedCheckBoxes.size()).isEqualTo(1);
-        assertThat(selectedCheckBoxes.get(0)).isEqualTo(expDirection);
+        assertThat(selectedCheckBoxes.size()).as("number of select checkbox").isEqualTo(1);
+        assertThat(selectedCheckBoxes.get(0)).as("select checkbox").isEqualTo(expDirection);
         return this;
     }
 

@@ -5,18 +5,13 @@ import ru.otus.java.qa.pro.driver.impl.DriverFactory;
 
 public final class CacheManager {
 
-    private static final ThreadLocal<Cache> CACHE = new ThreadLocal<>();
+    private static final ThreadLocal<Cache> CACHE = ThreadLocal.withInitial(Cache::new);
 
     private CacheManager() {
     }
 
     public static Cache get() {
-        Cache c = CACHE.get();
-        if (c == null) {
-            c = new Cache();
-            CACHE.set(c);
-        }
-        return c;
+        return CACHE.get();
     }
 
 }

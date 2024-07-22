@@ -1,4 +1,4 @@
-package ru.otus.java.qa.pro.pages.impl;
+package ru.otus.java.qa.pro.pages;
 
 import static ru.otus.java.qa.pro.util.cashe.CacheId.SELECT_DIRECTION;
 

@@ -1,4 +1,4 @@
-package ru.otus.java.qa.pro.pages.impl;
+package ru.otus.java.qa.pro.pages;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -98,7 +98,7 @@ public abstract class BasePage<T extends BasePage<T>> extends CommonObject<T> {
 
     public T assertCurrentUrl(String expectedPath) {
         String actUrl = driver.getCurrentUrl();
-        assertThat(actUrl).endsWith(expectedPath);
+        assertThat(actUrl).as("url").endsWith(expectedPath);
         return (T) this;
     }
 

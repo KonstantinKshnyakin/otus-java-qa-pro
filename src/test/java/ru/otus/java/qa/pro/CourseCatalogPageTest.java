@@ -1,12 +1,12 @@
-package mianpage;
+package ru.otus.java.qa.pro;
 
-import static ru.otus.java.qa.pro.pages.impl.BasePage.open;
+import static ru.otus.java.qa.pro.pages.BasePage.open;
 
 import com.google.inject.Inject;
 import org.junit.jupiter.api.Test;
 import ru.otus.java.qa.pro.annotations.ExtendWithUIExtension;
-import ru.otus.java.qa.pro.pages.impl.CourseCatalogPage;
-import ru.otus.java.qa.pro.pages.impl.CoursePage;
+import ru.otus.java.qa.pro.pages.CourseCatalogPage;
+import ru.otus.java.qa.pro.pages.CoursePage;
 
 @ExtendWithUIExtension
 public class CourseCatalogPageTest {
