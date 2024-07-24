@@ -1,14 +1,11 @@
 package ru.otus.java.qa.pro.components.main;
 
 import static ru.otus.java.qa.pro.elements.ElementInit.buttonByXPath;
-import static ru.otus.java.qa.pro.util.cashe.CacheId.SELECT_DIRECTION;
 
 import com.google.inject.Inject;
 import ru.otus.java.qa.pro.components.BaseComponent;
-import ru.otus.java.qa.pro.data.CoursesDirection;
 import ru.otus.java.qa.pro.elements.Button;
 import ru.otus.java.qa.pro.context.SettingsContext;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class EducationDropdownMenu extends BaseComponent<EducationDropdownMenu> {
 
@@ -43,13 +40,6 @@ public class EducationDropdownMenu extends BaseComponent<EducationDropdownMenu> 
     public EducationDropdownMenu clickEventsByIndex(int index) {
         Button element = buttonByXPath(ALL_EVENTS_BY_INDEX_SELECTOR.formatted(index));
         element.click();
-        return this;
-    }
-
-    public EducationDropdownMenu clickOneCourseRandom() {
-        int i = ThreadLocalRandom.current().nextInt(CoursesDirection.values().length);
-        clickAllCourseByIndex(i + 1);
-        cache.put(SELECT_DIRECTION, CoursesDirection.values()[i]);
         return this;
     }
 

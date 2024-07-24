@@ -1,7 +1,5 @@
 package ru.otus.java.qa.pro.pages;
 
-import static ru.otus.java.qa.pro.util.cashe.CacheId.SELECT_DIRECTION;
-
 import com.google.inject.Inject;
 import ru.otus.java.qa.pro.annotations.Path;
 import ru.otus.java.qa.pro.components.NavBar;
@@ -37,11 +35,6 @@ public class CourseCatalogPage extends BasePage<CourseCatalogPage> {
 
     public DirectionLeftBar directionLeftBar() {
         return directionLeftBar;
-    }
-
-    public CourseCatalogPage assertRandomUrl() {
-        String expUrl = cache.getCoursesDirection(SELECT_DIRECTION).getPath();
-        return assertCurrentUrl(expUrl);
     }
 
 }

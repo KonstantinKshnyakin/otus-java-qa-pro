@@ -5,17 +5,13 @@ import static org.assertj.core.api.Assertions.fail;
 import static ru.otus.java.qa.pro.util.cashe.CacheId.ALL_COURSES_WITH_DATE;
 
 import com.google.inject.Inject;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 import org.openqa.selenium.support.FindBy;
 import ru.otus.java.qa.pro.components.BaseComponent;
 import ru.otus.java.qa.pro.elements.Button;
 import ru.otus.java.qa.pro.elements.CourseBlock;
 import ru.otus.java.qa.pro.context.SettingsContext;
-import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
@@ -30,14 +26,6 @@ public class Catalog extends BaseComponent<Catalog> {
     @Inject
     public Catalog(SettingsContext settingsContext) {
         super(settingsContext);
-    }
-
-    public Catalog findAllCoursesWithDateIsMinAndAssertTitleAndDate(boolean isMin) {
-        List<LocalDate> allDate = findAllDate();
-        LocalDate searchDate = findCourseDateIsMin(allDate, isMin);
-        List<CourseBlock> allCoursesWithDate = findAllCoursesWithDate(searchDate);
-        assertTitleAndDateByJsoup(allCoursesWithDate);
-        return this;
     }
 
     public Catalog findCourseByNameAndClick(String name) {
@@ -84,33 +72,6 @@ public class Catalog extends BaseComponent<Catalog> {
         return this;
     }
 
-    public Catalog findCourseByName2(String name) {
-        List<CourseBlock> old = new ArrayList<>();
-        CourseBlock courseBox = null;
-        while (courseBox == null) {
-            List<CourseBlock> news = allCourseBlock;
-            news.removeAll(old);
-            courseBox = news.stream()
-                    .filter(cb -> name.equals(cb.getTitle()))
-                    .findFirst().orElse(null);
-            if (courseBox == null) {
-                if (showMoreButton.exists()) {
-                    showMoreButton.moveToElementAndClick();
-                    old = news;
-                } else {
-                    break;
-                }
-            }
-        }
-        if (courseBox != null) {
-            courseBox.scrollIntoViewAndClick();
-        } else {
-            fail("Course with name %s not found".formatted(name));
-        }
-        return this;
-    }
-
-
     private List<CourseBlock> findAllCoursesWithDate(LocalDate... searchDates) {
         List<LocalDate> searchDateList = Arrays.asList(searchDates);
         return allCourseBlock.stream()
@@ -125,12 +86,6 @@ public class Catalog extends BaseComponent<Catalog> {
                 .toList();
     }
 
-    private LocalDate findCourseDateIsMin(List<LocalDate> allDate, boolean isMin) {
-        return allDate.stream()
-                .reduce((d1, d2) -> d1.isAfter(d2) ^ isMin ? d1 : d2)
-                .orElseGet(() -> fail("Courses with date not found"));
-    }
-
     private List<LocalDate> findAllDate() {
         return allCourseBlock.stream()
                 .map(CourseBlock::getDate)
@@ -143,36 +98,6 @@ public class Catalog extends BaseComponent<Catalog> {
         String dateWithoutDuration = date.replaceAll("^(\\d.+)\\s·.+", "$1");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM, yyyy", new Locale("ru"));
         return LocalDate.parse(dateWithoutDuration, formatter);
-    }
-
-    private void assertTitleAndDateByJsoup(List<CourseBlock> courseBlocks) {
-        courseBlocks.forEach(cb -> {
-            try {
-                Document coursePage = Jsoup.connect(cb.getHref()).get();
-
-                String actTitle = coursePage.selectXpath("//h1").get(0).text();
-                assertThat(actTitle)
-                        .as("title")
-                        .isEqualTo(cb.getTitle());
-
-                LocalDate expDate = toLocalDate(cb.getDate());
-
-                String actDateUp = coursePage.selectXpath("(//div[contains(@class, 'galmep')]//p[text()])[1]").get(0).text();
-                LocalDate actLocalDateUp = toLocalDate(actDateUp + ", 2024");
-                assertThat(actLocalDateUp)
-                        .as("date up")
-                        .isEqualTo(expDate);
-
-                String actDateDown = coursePage.selectXpath("//div[contains(text(), 'Старт')]").get(0).text()
-                        .replaceAll(".*\\s(\\d.+)", "$1");
-                LocalDate actLocalDateDown = toLocalDate(actDateDown + ", 2024");
-                assertThat(actLocalDateDown)
-                        .as("date down")
-                        .isEqualTo(expDate);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        });
     }
 
 }

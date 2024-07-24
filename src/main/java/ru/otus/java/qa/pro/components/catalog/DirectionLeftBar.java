@@ -1,8 +1,6 @@
 package ru.otus.java.qa.pro.components.catalog;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static ru.otus.java.qa.pro.elements.ElementInit.checkBoxByXPath;
-import static ru.otus.java.qa.pro.util.cashe.CacheId.SELECT_DIRECTION;
 
 import com.google.inject.Inject;
 import org.openqa.selenium.support.FindBy;
@@ -51,17 +49,6 @@ public class DirectionLeftBar extends BaseComponent<DirectionLeftBar> {
     public DirectionLeftBar setCheckBoxByDirectionIs(CoursesDirection checkBoxDirection, boolean isSelect) {
         CheckBox checkBox = checkBoxByXPath(CHECK_BOX_BY_NAME_LOCATOR.formatted(checkBoxDirection.getDirection()));
         checkBox.set(isSelect);
-        return this;
-    }
-
-    public DirectionLeftBar assetRandomCheckBox() {
-        String expDirection = cache.getCoursesDirection(SELECT_DIRECTION).getDirection();
-        List<String> selectedCheckBoxes = allCheckBoxes.stream()
-                .filter(CheckBox::isSelected)
-                .map(CheckBox::getText)
-                .toList();
-        assertThat(selectedCheckBoxes.size()).as("number of selected checkboxes").isEqualTo(1);
-        assertThat(selectedCheckBoxes.get(0)).as("selected checkbox").isEqualTo(expDirection);
         return this;
     }
 
