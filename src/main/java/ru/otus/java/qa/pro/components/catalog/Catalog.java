@@ -109,30 +109,4 @@ public class Catalog extends HtmlElement {
         return this;
     }
 
-    public Catalog findCourseByName2(String name) {
-        List<CourseBlock> old = new ArrayList<>();
-        CourseBlock courseBox = null;
-        while (courseBox == null) {
-            List<CourseBlock> news = allCourseBlock;
-            news.removeAll(old);
-            courseBox = news.stream()
-                    .filter(cb -> name.equals(cb.getTitle()))
-                    .findFirst().orElse(null);
-            if (courseBox == null) {
-                if (showMoreButton.exists()) {
-                    showMoreButton.moveToElementAndClick();
-                    old = news;
-                } else {
-                    break;
-                }
-            }
-        }
-        if (courseBox != null) {
-            courseBox.scrollIntoViewAndClick();
-        } else {
-            fail("Course with name %s not found".formatted(name));
-        }
-        return this;
-    }
-
 }
