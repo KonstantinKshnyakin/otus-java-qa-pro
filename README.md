@@ -5,7 +5,6 @@
 - Selenium 4
 - AssertJ
 - Google Guice
-- Jsoup
 - Cucumber
 
 ### Строка запуска : clean test -Pprod
