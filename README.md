@@ -7,7 +7,7 @@
 - Google Guice
 - Jsoup
 
-**Строка запуска : `clean test -Pprod -Dbrowser=chrome -DisRemote=true -DremoteURL=localhost/wd/hub`** 
+**Строка запуска : `mvn clean test -Pprod -Dbrowser=chrome -DisRemote=true -DremoteURL=localhost/wd/hub`** 
 
 **Также имеется ветка homework_2_cucumber, где реализация сделана на основе cucumber.**
 
