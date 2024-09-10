@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 
 public interface IDriverCreator {
 
-    WebDriver newDriver();
+    WebDriver createLocal();
+
+    WebDriver createRemote(String remoteURL);
 
 }

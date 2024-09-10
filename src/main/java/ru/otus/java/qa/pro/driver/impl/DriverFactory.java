@@ -9,17 +9,25 @@ import ru.otus.java.qa.pro.listeners.ActionsListeners;
 
 public class DriverFactory implements IDriverFactory {
 
-    private String browserType = System.getProperty("briwser", "chrome").toLowerCase();
+    private String browserType = System.getProperty("browser", "chrome").toLowerCase();
+    private Boolean isRemote = Boolean.parseBoolean(System.getProperty("isRemote", "false").toLowerCase());
+    private String remoteURL = System.getProperty("remoteURL", "http://192.168.1.124/wd/hub").toLowerCase();
+
 
     public WebDriver getDriver() {
         IDriverCreator driverCreator;
         switch (browserType) {
             case "chrome" -> {
-                driverCreator = new ChromeWebDriver();
+                driverCreator = new ChromeDriverCreator();
             }
             default -> throw new DriverTypeNotSupported(browserType);
         }
-        WebDriver driver = driverCreator.newDriver();
+        WebDriver driver;
+        if (isRemote) {
+            driver = driverCreator.createRemote(remoteURL);
+        } else {
+            driver = driverCreator.createLocal();
+        }
         driver.manage().window().maximize();
         return new EventFiringDecorator<>(new ActionsListeners())
                 .decorate(driver);

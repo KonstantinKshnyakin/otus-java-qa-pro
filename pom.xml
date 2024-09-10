@@ -17,7 +17,7 @@
         <!--dependencies-->
         <guice.version>7.0.0</guice.version>
         <junit.version>5.10.2</junit.version>
-        <selenium.version>4.22.0</selenium.version>
+        <selenium.version>4.24.0</selenium.version>
         <webdrivermanager.version>5.9.1</webdrivermanager.version>
         <assertj-core.version>3.26.0</assertj-core.version>
         <htmlelements.version>1.20.0</htmlelements.version>
@@ -50,11 +50,6 @@
             <groupId>com.google.inject</groupId>
             <artifactId>guice</artifactId>
             <version>${guice.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.github.bonigarcia</groupId>
-            <artifactId>webdrivermanager</artifactId>
-            <version>${webdrivermanager.version}</version>
         </dependency>
         <dependency>
             <groupId>org.assertj</groupId>

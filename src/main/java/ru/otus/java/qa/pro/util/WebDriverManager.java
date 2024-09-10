@@ -18,4 +18,8 @@ public final class WebDriverManager {
         WEB_DRIVER.set(new DriverFactory().getDriver());
     }
 
+    public static void clear() {
+        WEB_DRIVER.remove();
+    }
+
 }

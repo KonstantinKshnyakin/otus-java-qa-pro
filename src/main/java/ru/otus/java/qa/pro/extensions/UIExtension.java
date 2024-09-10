@@ -6,6 +6,7 @@ import org.junit.jupiter.api.extension.*;
 import org.openqa.selenium.WebDriver;
 import ru.otus.java.qa.pro.modules.PageGuiceModule;
 import ru.otus.java.qa.pro.util.WebDriverManager;
+import ru.otus.java.qa.pro.util.cashe.CacheManager;
 
 public class UIExtension implements TestInstancePostProcessor, TestInstancePreConstructCallback, AfterEachCallback {
 
@@ -22,11 +23,13 @@ public class UIExtension implements TestInstancePostProcessor, TestInstancePreCo
 
     @Override
     public void afterEach(ExtensionContext context) {
+        CacheManager.clear();
         WebDriver webDriver = WebDriverManager.getWebDriver();
         if (webDriver != null) {
             webDriver.close();
             webDriver.quit();
         }
+        WebDriverManager.clear();
     }
 
 }
