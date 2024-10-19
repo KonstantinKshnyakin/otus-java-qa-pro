@@ -11,6 +11,11 @@ import java.util.Map;
 
 public abstract class AbstractDriverCreator implements IDriverCreator {
 
+    protected final String browserVersion;
+
+    public AbstractDriverCreator(String browserVersion) {
+        this.browserVersion = browserVersion;
+    }
 
     protected abstract MutableCapabilities optionsLocal();
 

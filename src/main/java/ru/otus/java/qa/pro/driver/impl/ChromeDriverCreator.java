@@ -6,6 +6,10 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 public class ChromeDriverCreator extends AbstractDriverCreator {
 
+    public ChromeDriverCreator(String browserVersion) {
+        super(browserVersion);
+    }
+
     @Override
     public WebDriver createLocal() {
         return new ChromeDriver(optionsLocal());
@@ -13,7 +17,9 @@ public class ChromeDriverCreator extends AbstractDriverCreator {
 
     @Override
     public ChromeOptions optionsLocal() {
-        return new ChromeOptions().addArguments(
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.setBrowserVersion(browserVersion);
+        return chromeOptions.addArguments(
                 "--no-sandbox",
                 "--no-first-run",
                 "--enable-extensions",

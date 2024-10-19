@@ -1,7 +1,10 @@
 package ru.otus.java.qa.pro.pages;
 
+import static io.qameta.allure.model.Parameter.Mode.HIDDEN;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import io.qameta.allure.Param;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import ru.otus.java.qa.pro.annotations.Path;
 import ru.otus.java.qa.pro.annotations.PathTemplate;
@@ -20,10 +23,14 @@ public abstract class BasePage<T extends BasePage<T>> extends CommonObject<T> {
     }
 
     public T doThis(Consumer<T> consumer) {
-        return doThis(consumer, "");
+        T t = (T) this;
+        consumer.accept(t);
+        return t;
     }
 
-    public T doThis(Consumer<T> consumer, String stepName) {
+    @Step("{stepName}")
+    public T doThis(@Param(mode = HIDDEN) Consumer<T> consumer,
+                    @Param(mode = HIDDEN) String stepName) {
         T t = (T) this;
         consumer.accept(t);
         return t;
@@ -96,6 +103,7 @@ public abstract class BasePage<T extends BasePage<T>> extends CommonObject<T> {
         throw new UITestException("There is no @Path annotation above the class " + paheClass.getSimpleName());
     }
 
+    @Step("проверка url страницы")
     public T assertCurrentUrl(String expectedPath) {
         String actUrl = driver.getCurrentUrl();
         assertThat(actUrl).as("url").endsWith(expectedPath);

@@ -1,6 +1,7 @@
 package ru.otus.java.qa.pro.components;
 
 import com.google.inject.Inject;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import ru.otus.java.qa.pro.elements.Button;
@@ -23,26 +24,31 @@ public class NavBar extends BaseComponent<NavBar> {
         super(driver);
     }
 
+    @Step("клик по логотипу")
     public NavBar clickLogoButton() {
         logo.click();
         return this;
     }
 
+    @Step("клик по иконке поиска")
     public NavBar clickSearchButton() {
         search.click();
         return this;
     }
 
+    @Step("перевести указатель на 'Обучение'")
     public NavBar moveToEducationButton() {
         education.moveToElement();
         return this;
     }
 
+    @Step("клик по 'Информация'")
     public NavBar clickInfoButton() {
         info.click();
         return this;
     }
 
+    @Step("клик по 'Мое обучение'")
     public NavBar clickMyEducationButton() {
         myEducation.click();
         return this;

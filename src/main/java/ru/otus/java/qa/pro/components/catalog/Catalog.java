@@ -3,6 +3,7 @@ package ru.otus.java.qa.pro.components.catalog;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
 
+import io.qameta.allure.Step;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.openqa.selenium.support.FindBy;
@@ -12,18 +13,18 @@ import ru.yandex.qatools.htmlelements.element.HtmlElement;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-@FindBy(xpath = "//section[.//div[text()='Каталог']]")
+@FindBy(xpath = "//section[.//h1/div[text()='Каталог']]")
 public class Catalog extends HtmlElement {
 
-    @FindBy(xpath = "descendant::a")
+    @FindBy(xpath = "descendant::a[./div[2]/div/div]")
     private List<CourseBlock> allCourseBlock;
     @FindBy(xpath = "descendant::button[contains(text(), 'Показать')]")
     private Button showMoreButton;
 
+    @Step("Проверка курсов с минимальной/максимальной датой (isMin={isMin})")
     public Catalog findAllCoursesWithDateIsMinAndAssertTitleAndDate(boolean isMin) {
         LocalDate searchDate = findCourseDateIsMin(isMin);
         List<CourseBlock> allCoursesWithDate = findAllCoursesWithDate(searchDate);
@@ -89,6 +90,7 @@ public class Catalog extends HtmlElement {
         return LocalDate.parse(dateWithoutDuration, formatter);
     }
 
+    @Step("клик по курсу '{name}'")
     public Catalog findCourseByNameAndClick(String name) {
         CourseBlock courseBox = allCourseBlock.stream()
                 .filter(cb -> name.equals(cb.getTitle()))
@@ -101,6 +103,7 @@ public class Catalog extends HtmlElement {
         return this;
     }
 
+    @Step("показать все доступные курсы")
     public Catalog showAllCourses() {
         while (showMoreButton.exists()) {
             showMoreButton.scrollIntoView();

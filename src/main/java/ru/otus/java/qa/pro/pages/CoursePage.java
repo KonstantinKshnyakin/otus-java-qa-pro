@@ -3,6 +3,7 @@ package ru.otus.java.qa.pro.pages;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.google.inject.Inject;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -20,6 +21,7 @@ public class CoursePage extends BasePage<CoursePage> {
         super(driver);
     }
 
+    @Step("проверка заголовка страницы {expTitle}")
     public CoursePage assertTitle(String expTitle) {
         assertThat(title.getText()).as("title")
                 .isEqualTo(expTitle);

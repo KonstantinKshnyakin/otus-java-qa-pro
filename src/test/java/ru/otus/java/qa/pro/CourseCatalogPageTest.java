@@ -3,11 +3,15 @@ package ru.otus.java.qa.pro;
 import static ru.otus.java.qa.pro.pages.BasePage.open;
 
 import com.google.inject.Inject;
+import io.qameta.allure.Story;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.otus.java.qa.pro.annotations.ExtendWithUIExtension;
 import ru.otus.java.qa.pro.pages.CourseCatalogPage;
 import ru.otus.java.qa.pro.pages.CoursePage;
 
+@Story("Каталог курсов")
+@DisplayName("Каталог курсов")
 @ExtendWithUIExtension
 public class CourseCatalogPageTest {
 
@@ -17,6 +21,7 @@ public class CourseCatalogPageTest {
     private CoursePage coursePage;
 
     @Test
+    @DisplayName("Поиск курса по названию")
     public void courseCatalogPageFindCourse() {
         open(courseCatalogPage)
                 .doThis(page -> {
@@ -33,6 +38,7 @@ public class CourseCatalogPageTest {
     }
 
     @Test
+    @DisplayName("Проверка курсов с минимальной и максимальной датой")
     public void courseCatalogPageFindMinMaxDate() {
         open(courseCatalogPage)
                 .doThis(page -> {

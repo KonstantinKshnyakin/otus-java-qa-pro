@@ -5,6 +5,7 @@ import static ru.otus.java.qa.pro.elements.ElementInit.checkBoxByXPath;
 import static ru.otus.java.qa.pro.util.cashe.CacheId.SELECT_DIRECTION;
 
 import com.google.inject.Inject;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import ru.otus.java.qa.pro.components.BaseComponent;
@@ -43,6 +44,7 @@ public class DirectionLeftBar extends BaseComponent<DirectionLeftBar> {
         return this;
     }
 
+    @Step("назнчение боксу {direction} статуса isSelected={isSelected}")
     public DirectionLeftBar setCheckBoxByDirectionIs(String direction, boolean isSelected) {
         CoursesDirection coursesDirection = CoursesDirection.valueOfByDirection(direction);
         return setCheckBoxByDirectionIs(coursesDirection, isSelected);
@@ -54,6 +56,7 @@ public class DirectionLeftBar extends BaseComponent<DirectionLeftBar> {
         return this;
     }
 
+    @Step("проверка чекбокса на левом bar'e")
     public DirectionLeftBar assetRandomCheckBox() {
         String expDirection = cache.getCoursesDirection(SELECT_DIRECTION).getDirection();
         List<String> selectedCheckBoxes = allCheckBoxes.stream()
