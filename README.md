@@ -8,6 +8,7 @@
 - Jsoup
 
 **Строка запуска : `mvn clean test -Pprod -Dbrowser=chrome -DisRemote=true -DremoteURL=localhost/wd/hub`** 
+**Строка запуска : `docker run --rm -e BROWSER=chrome -e BROWSER_VER=127.0 -e REMOTE_URL=http://192.168.1.124/wd/hub localhost:5000/ui-tests:1.0.0`** 
 
 **Также имеется ветка homework_2_cucumber, где реализация сделана на основе cucumber.**
 

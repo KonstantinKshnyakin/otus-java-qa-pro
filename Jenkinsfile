@@ -11,8 +11,13 @@ properties([
 ])
 
 pipeline {
+
     agent {
         label 'docker-node-1'
+    }
+
+    options {
+        timeout(time: 15, unit: 'MINUTES')
     }
 
     stages {
@@ -33,7 +38,7 @@ pipeline {
         stage('Run test image') {
             steps {
                 sh "docker run --rm \
-                -v /home/konstantin/jenkins/jenkins/jenkins_home/workspace/ui-test/allure-results:/ui-test/target/allure-results \
+                -v /home/konstantin/jenkins/jenkins/jenkins_home/workspace/ui-tests/allure-results:/ui-tests/target/allure-results \
                 --env-file ./.env \
                 localhost:5000/ui-test:$params.image_version"
             }
@@ -52,12 +57,12 @@ pipeline {
         }
     }
 
-     post {
-       success { buildMessageAndSendTelegram('🚀', 'Success fds') }
-       unstable { buildMessageAndSendTelegram('💣', 'Unstable') }
-       failure { buildMessageAndSendTelegram('💥', 'Failure') }
-       aborted { buildMessageAndSendTelegram('😥', 'Aborted') }
-     }
+    post {
+      success { buildMessageAndSendTelegram('🚀', 'Success') }
+      unstable { buildMessageAndSendTelegram('💣', 'Unstable') }
+      failure { buildMessageAndSendTelegram('💥', 'Failure') }
+      aborted { buildMessageAndSendTelegram('😥', 'Aborted') }
+    }
 
 }
 
@@ -65,9 +70,9 @@ pipeline {
 
 def buildMessageAndSendTelegram(smiley, status) {
     message = "${smiley}\n Job Name: ${JOB_NAME} \nBuild: ${BUILD_DISPLAY_NAME} \nStatus: ${status}"
-    message += "\nLog: ${env.BUILD_URL}console\nAllure report: ${BUILD_URL}allure"
+    message += "\nLog: ${env.BUILD_URL}console"
     if (status.equals("Success") || status.equals("Unstable")) {
-        message += buildAllureResults()
+        message += "\nAllure report: ${BUILD_URL}allure" + buildAllureResults()
     }
     sendTelegram(message)
     cleanWs()
