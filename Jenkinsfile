@@ -40,7 +40,7 @@ pipeline {
                 sh "docker run --rm \
                 -v /home/konstantin/jenkins/jenkins/jenkins_home/workspace/ui-tests/allure-results:/ui-tests/target/allure-results \
                 --env-file ./.env \
-                localhost:5000/ui-test:$params.image_version"
+                localhost:5000/ui-tests:$params.image_version"
             }
         }
 
