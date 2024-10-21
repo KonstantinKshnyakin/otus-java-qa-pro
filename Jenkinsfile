@@ -37,10 +37,12 @@ pipeline {
 
         stage('Run test image') {
             steps {
-                sh "docker run --rm \
-                -v /home/konstantin/jenkins/jenkins/jenkins_home/workspace/ui-tests/allure-results:/ui-tests/target/allure-results \
-                --env-file ./.env \
-                localhost:5000/ui-tests:$params.image_version"
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    sh "docker run --rm \
+                    -v /home/konstantin/jenkins/jenkins/jenkins_home/workspace/ui-tests/allure-results:/ui-tests/target/allure-results \
+                    --env-file ./.env \
+                    localhost:5000/ui-tests:$params.image_version"
+                }
             }
         }
 
