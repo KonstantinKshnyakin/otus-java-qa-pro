@@ -31,7 +31,7 @@ pipeline {
 
         stage('Pull test image') {
             steps {
-                sh "docker pull localhost:5000/ui-test:$params.image_version"
+                sh "docker pull localhost:5000/ui-tests:$params.image_version"
             }
         }
 
